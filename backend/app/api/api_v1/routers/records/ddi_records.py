@@ -3,7 +3,12 @@ from fastapi import APIRouter, Depends, Query
 from pydantic.types import UUID4
 from app.db.session import get_db
 from app.core.auth import get_current_active_superuser
+import json
+import os
 
+from app.ocr_sys_v2.ocr_read import read_text
+from app.schemas.ddi_schemas import DefendantDemographicInfoBase
+from app.ocr_sys_v2.ddi_schemify import *
 
 ddi_record_router = d = APIRouter()
 
@@ -54,3 +59,5 @@ ddi_record_router = d = APIRouter()
 #     ddi = update_ddi(db, current_user.id, model)
 #     return ddi.ddi_id
 
+
+    
